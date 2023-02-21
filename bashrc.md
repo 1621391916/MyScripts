@@ -18,6 +18,7 @@ ntr() {
     output=$(echo "$input" | awk -F"[][]" '{print $2}')
   else
     echo "input data is not of any known type"
+    output=$input
   fi
   nexttrace -M $output
 }
@@ -39,6 +40,7 @@ btr() {
     output=$(echo "$input" | awk -F"[][]" '{print $2}')
   else
     echo "input data is not of any known type"
+    output=$input
   fi
   besttrace -g cn $output
 }
