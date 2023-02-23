@@ -29,7 +29,8 @@ rm /tmp/besttrace.zip
 rm -rf /tmp/besttrace
 
 # 修改bashrc
-code=$(cat <<EOF
+code=$(cat <<'EOF'
+
 ntr() {
   input=$1
   # Check if input is of type ipv4
