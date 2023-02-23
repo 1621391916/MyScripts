@@ -16,14 +16,14 @@ else
 fi
 
 # Download file
-curl -Lo ./ntr $nexttrace_url
-chmod +x ./ntr
-mv ./ntr /usr/bin
+curl -Lo ./nexttrace $nexttrace_url
+chmod +x ./nexttrace
+mv ./nexttrace /usr/bin
 
 curl -Lo /tmp/besttrace.zip https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip
 unzip -o /tmp/besttrace.zip -d /tmp/besttrace
 chmod +x /tmp/besttrace/$besttrace_filename
-mv /tmp/besttrace/$besttrace_filename /usr/bin/btr
+mv /tmp/besttrace/$besttrace_filename /usr/bin/besttrace
 
 rm /tmp/besttrace.zip
 rm -rf /tmp/besttrace
