@@ -9,10 +9,10 @@ proxy_prefix='https://cfproxy.wangyuye.cc/down/'
 # 安装traceroute
 tag_name=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 if [ $(uname -m) == 'x86_64' ]; then
-  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_amd64" | cut -d : -f 2,3 | tr -d \")
+  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_amd64" | cut -d : -f 2,3 | tr -d \" | tr -d ' ')
   besttrace_filename=besttrace
 elif [ $(uname -m) == 'aarch64' ]; then
-  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_arm64" | cut -d : -f 2,3 | tr -d \")
+  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_arm64" | cut -d : -f 2,3 | tr -d \" | tr -d ' ')
   besttrace_filename=besttracearm
 else
   echo "Unknown architecture"
@@ -20,17 +20,21 @@ else
 fi
 
 # Download file
-wget -O ./nexttrace $nexttrace_url
+nexttrace_url="${proxy_prefix}${nexttrace_url}"
+echo "Download nexttrace from $nexttrace_url"
+wget -qO ./nexttrace --show-progress $nexttrace_url
 chmod +x ./nexttrace
 mv ./nexttrace /usr/bin
 
-wget -O /tmp/besttrace.zip "${proxy_prefix}https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip"
-unzip -o /tmp/besttrace.zip -d /tmp/besttrace
-chmod +x /tmp/besttrace/$besttrace_filename
-mv /tmp/besttrace/$besttrace_filename /usr/bin/besttrace
+besttrace_url="${proxy_prefix}https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip"
+echo "Download besttrace from $besttrace_url"
+wget -qO ./besttrace.zip --show-progress $besttrace_url
+unzip -qo ./besttrace.zip -d ./besttrace
+chmod +x ./besttrace/$besttrace_filename
+mv ./besttrace/$besttrace_filename /usr/bin/besttrace
 
-rm /tmp/besttrace.zip
-rm -rf /tmp/besttrace
+rm ./besttrace.zip
+rm -rf ./besttrace
 
 # 修改bashrc
 code=$(cat <<'EOF'
