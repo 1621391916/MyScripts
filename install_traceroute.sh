@@ -1,6 +1,8 @@
 #!/bin/bash
-
-apt-get update && apt-get install -y zip
+if ! dpkg -s zip >/dev/null 2>&1; then
+  echo "zip package is not installed"
+  apt-get update && apt-get install -y zip
+fi
 
 proxy_prefix='https://cfproxy.wangyuye.cc/down/'
 
