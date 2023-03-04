@@ -18,11 +18,11 @@ else
 fi
 
 # Download file
-curl -Lo ./nexttrace $nexttrace_url
+wget -O ./nexttrace $nexttrace_url
 chmod +x ./nexttrace
 mv ./nexttrace /usr/bin
 
-curl -Lo /tmp/besttrace.zip "${proxy_prefix}https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip"
+wget -O /tmp/besttrace.zip "${proxy_prefix}https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip"
 unzip -o /tmp/besttrace.zip -d /tmp/besttrace
 chmod +x /tmp/besttrace/$besttrace_filename
 mv /tmp/besttrace/$besttrace_filename /usr/bin/besttrace
