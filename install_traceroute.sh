@@ -2,13 +2,15 @@
 
 apt-get update && apt-get install -y zip
 
+proxy_prefix='https://cfproxy.wangyuye.cc/down/'
+
 # 安装traceroute
-tag_name=$(curl --silent https://api.github.com/repos/sjlleo/nexttrace/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
+tag_name=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 if [ $(uname -m) == 'x86_64' ]; then
-  nexttrace_url=$(curl --silent https://api.github.com/repos/sjlleo/nexttrace/releases/latest | grep "browser_download_url.*linux_amd64" | cut -d : -f 2,3 | tr -d \")
+  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_amd64" | cut -d : -f 2,3 | tr -d \")
   besttrace_filename=besttrace
 elif [ $(uname -m) == 'aarch64' ]; then
-  nexttrace_url=$(curl --silent https://api.github.com/repos/sjlleo/nexttrace/releases/latest | grep "browser_download_url.*linux_arm64" | cut -d : -f 2,3 | tr -d \")
+  nexttrace_url=$(curl --silent "${proxy_prefix}https://api.github.com/repos/sjlleo/nexttrace/releases/latest" | grep "browser_download_url.*linux_arm64" | cut -d : -f 2,3 | tr -d \")
   besttrace_filename=besttracearm
 else
   echo "Unknown architecture"
@@ -20,7 +22,7 @@ curl -Lo ./nexttrace $nexttrace_url
 chmod +x ./nexttrace
 mv ./nexttrace /usr/bin
 
-curl -Lo /tmp/besttrace.zip https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip
+curl -Lo /tmp/besttrace.zip "${proxy_prefix}https://github.com/1621391916/wyyLinuxBench/raw/main/besttrace4linux.zip"
 unzip -o /tmp/besttrace.zip -d /tmp/besttrace
 chmod +x /tmp/besttrace/$besttrace_filename
 mv /tmp/besttrace/$besttrace_filename /usr/bin/besttrace
