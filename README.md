@@ -1,6 +1,6 @@
-# wyyLinuxBench
+# MyScripts
 
-自用魔改bench脚本
+自己写的或者魔改的各种脚本
 
 
 
