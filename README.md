@@ -22,6 +22,7 @@ from： https://www.idcoffer.com/archives/9258
 用法： 
 
 ### VC 抢机JS脚本
+打开 https://free.vps.vc/create-vps, F12-源代码-右上角停用断点(变成蓝色), 控制台粘贴以下代码，到点了直接刷新选地区然后提交
 ```
 document.getElementById("os").options[2].selected = true;
 document.getElementById("password").value = "password123";
