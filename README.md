@@ -31,3 +31,8 @@ for (var i = 1; i <= 5; i++) {
     document.evaluate('//*[@id="form-submit"]/fieldset['+i+']/div/div/div/label/input', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.checked = true;
 }
 ```
+
+### ubuntu arm64 安装Chrome和chromedriver
+```
+apt install chromium-browser chromium-chromedriver
+```
