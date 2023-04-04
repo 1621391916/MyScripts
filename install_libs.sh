@@ -1,5 +1,5 @@
-apt update && apt install -y curl wget sudo screen vnstat tzdata net-tools iputils-ping bind-utils
-
+apt update && apt install -y curl wget sudo screen vnstat tzdata net-tools iputils-ping 
+apt install -y bind-utils
 # 时区
 timedatectl set-timezone Asia/Shanghai
 
