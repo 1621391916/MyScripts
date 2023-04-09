@@ -36,3 +36,11 @@ for (var i = 1; i <= 5; i++) {
 ```
 apt install chromium-browser chromium-chromedriver
 ```
+
+安装speedtest-x(docker版，接管80端口)
+```
+docker pull badapple9/speedtest-x
+```
+```
+docker run -d -p 80:80 -v /root/speedtest:/var/www/html/ --name=speedtest-x -it badapple9/speedtest-x
+```
