@@ -44,3 +44,8 @@ docker pull badapple9/speedtest-x
 ```
 docker run -d -p 80:80 -v /root/speedtest:/var/www/html/ --name=speedtest-x -it badapple9/speedtest-x
 ```
+
+### 甲骨文首尔访问hostloc
+```
+echo "172.67.173.104 hostloc.com" >> /etc/hosts
+```
