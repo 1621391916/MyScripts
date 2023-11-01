@@ -7,7 +7,7 @@ disk_id=$(ls /dev/disk/by-id/ | grep "scsi-0BUYVM_SLAB_VOLUME-" | cut -d "-" -f 
 mkfs.ext4 -F /dev/disk/by-id/scsi-0BUYVM_SLAB_VOLUME-$disk_id
 echo "已创建ext4文件系统"
 read -p "请输入挂载目录的路径（例如：/root/Downloads）: " mount_path
-
+mount_path="${mount_path:-/root/Downloads}"
 # 创建目录并挂载设备
 mkdir -p $mount_path
 mount -o discard,defaults /dev/disk/by-id/scsi-0BUYVM_SLAB_VOLUME-$disk_id $mount_path
